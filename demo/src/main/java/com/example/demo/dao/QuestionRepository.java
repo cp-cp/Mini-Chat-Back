@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface QuestionRepository extends JpaRepository<Question,Integer> {
+    List<Question> findByContent(String content);
     //List<Question> findByQuest(String quest);
 }

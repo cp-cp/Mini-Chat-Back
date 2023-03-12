@@ -24,4 +24,16 @@ public class QuestionService {
         return null;//questionRepository.findByQuest(quest);
     }
     public Optional<Question> findById(Integer id){return questionRepository.findById(id);}
+
+    public List<Question> findByContent(String content) {
+        return questionRepository.findByContent(content);
+    }
+
+    public void deleteById(Integer id) {
+         questionRepository.deleteById(id);
+    }
+
+    public void addQuest(Question question) {
+        questionRepository.save(question);
+    }
 }

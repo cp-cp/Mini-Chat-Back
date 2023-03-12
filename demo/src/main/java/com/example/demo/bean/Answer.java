@@ -16,5 +16,6 @@ public class Answer {
     private Integer id;
     private String content;
     private Integer questionId;
+    private String solver;
 }
 

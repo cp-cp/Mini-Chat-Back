@@ -27,9 +27,18 @@ public class QuestionController {
     List<Question> findAll() {
         return questionService.findAll();
     }
-    @GetMapping("/{quest}")
-    List<Question> findByNumber(@PathVariable("quest") String quest){return questionService.findByQuest(quest);}
-    @GetMapping("/{id}")
+    @PostMapping("/findByContent")
+    List<Question> findByContent(@RequestBody  String content){
+        String newData = content.replaceAll("\"", "");
+        System.out.println(newData);
+        System.out.println(questionService.findByContent(newData));
+        return questionService.findByContent(newData);}
+    @GetMapping("/getById/{id}")
     Optional<Question> findById(@PathVariable("id") Integer id){return questionService.findById(id);}
+    @DeleteMapping("/deleteById/{id}")
+    void deleteById(@PathVariable("id") Integer id){questionService.deleteById(id);}
+
+    @PostMapping("/addQuest")
+    void addQuest(@RequestBody Question question){questionService.addQuest(question);}
 }
 

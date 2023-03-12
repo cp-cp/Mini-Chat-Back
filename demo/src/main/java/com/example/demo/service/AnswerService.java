@@ -18,4 +18,8 @@ public class AnswerService {
     {
         return answerRepository.findAll();
     }
+
+    public void addAns(Answer answer) {
+        answerRepository.save(answer);
+    }
 }

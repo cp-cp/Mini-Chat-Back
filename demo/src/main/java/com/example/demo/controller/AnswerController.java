@@ -50,6 +50,9 @@ public class AnswerController {
         }
         return findAll();
     }
+
+    @PostMapping("/addAns")
+    void addQuest(@RequestBody Answer answer){answerService.addAns(answer);}
 //    @GetMapping("/{quest}")
 //    List<Question> findByNumber(@PathVariable("quest") String quest){return questionService.findByQuest(quest);}
 }
