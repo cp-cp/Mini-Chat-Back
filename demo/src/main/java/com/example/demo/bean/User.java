@@ -14,5 +14,7 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-    private String UserType;
+    private String name;
+    private String token;
+    private Boolean isAuthenticated;
 }
