@@ -16,6 +16,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String title;
     private String content;
     private String asker;
     @OneToMany(mappedBy = "questionId")
