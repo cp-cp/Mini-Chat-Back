@@ -1,5 +1,6 @@
 package com.example.demo.bean;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -19,7 +20,15 @@ public class Question {
     private String title;
     private String content;
     private String asker;
+    private Integer likesNumber=0;
     @OneToMany(mappedBy = "questionId")
     private List<Answer> answers;
+//    @OneToMany
+    @ManyToMany(mappedBy = "likedQuestions")
+    @JsonIgnore
+    private List<User> likedByUsers;
+//
+//    @JsonIgnore
+//    private List<User> likedByUsers;
 }
 

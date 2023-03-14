@@ -23,7 +23,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 
 
 @RestController//控制返回的格式，写入Http响应头
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/answers")
 public class AnswerController {
     @Autowired
@@ -53,6 +53,7 @@ public class AnswerController {
 
     @PostMapping("/addAns")
     void addQuest(@RequestBody Answer answer){answerService.addAns(answer);}
+
 //    @GetMapping("/{quest}")
 //    List<Question> findByNumber(@PathVariable("quest") String quest){return questionService.findByQuest(quest);}
 }

@@ -3,12 +3,10 @@ package com.example.demo.service;
 import com.example.demo.bean.Question;
 import com.example.demo.dao.QuestionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class QuestionService {
@@ -28,6 +26,9 @@ public class QuestionService {
     public List<Question> findByContent(String content) {
         return questionRepository.findByContent(content);
     }
+    public List<Question> findByTitle(String content) {
+        return questionRepository.findByTitle(content);
+    }
 
     public void deleteById(Integer id) {
          questionRepository.deleteById(id);
@@ -36,4 +37,5 @@ public class QuestionService {
     public void addQuest(Question question) {
         questionRepository.save(question);
     }
+
 }

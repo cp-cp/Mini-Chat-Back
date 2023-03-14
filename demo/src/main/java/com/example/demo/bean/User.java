@@ -2,6 +2,7 @@ package com.example.demo.bean;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,4 +18,11 @@ public class User {
     private String name;
     private String token;
     private Boolean isAuthenticated;
+    @ManyToMany
+    @JoinTable(
+            name = "user_question_likes",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "question_id"))
+    private List<Question> likedQuestions;
+
 }

@@ -12,5 +12,9 @@ import java.util.Optional;
 @Transactional
 public interface QuestionRepository extends JpaRepository<Question,Integer> {
     List<Question> findByContent(String content);
+
+    List<Question> findByTitle(String content);
+
+    List<Question> findByAsker(String name);
     //List<Question> findByQuest(String quest);
 }
