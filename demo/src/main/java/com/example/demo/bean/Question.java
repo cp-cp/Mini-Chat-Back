@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -27,6 +28,9 @@ public class Question {
     @ManyToMany(mappedBy = "likedQuestions")
     @JsonIgnore
     private List<User> likedByUsers;
+
+    @OneToMany
+    List<KeyWord>keyWords=new ArrayList<>();
 //
 //    @JsonIgnore
 //    private List<User> likedByUsers;
