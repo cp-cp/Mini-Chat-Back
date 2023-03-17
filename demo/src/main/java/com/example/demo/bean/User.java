@@ -24,4 +24,6 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "question_id"))
     private List<Question> likedQuestions;
+    @OneToMany
+    private List<JsonData> jsonData;
 }

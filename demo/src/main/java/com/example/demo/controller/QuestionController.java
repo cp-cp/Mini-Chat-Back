@@ -25,9 +25,7 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
     @GetMapping("/all")
-    List<Question> findAll() {
-        return questionService.findAll();
-    }
+    List<Question> findAll() {return questionService.findAll();}
     @PostMapping("/findByContent")
     List<Question> findByContent(@RequestBody  String content){
         String newData = content.replaceAll("\"", "");

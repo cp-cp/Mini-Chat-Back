@@ -10,12 +10,15 @@ import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.test.annotation.Timed;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.TimeoutException;
 
 @RestController//控制返回的格式，写入Http响应头
 @CrossOrigin(origins = "*")
@@ -141,6 +144,13 @@ public class UserController {
                 }
             }
         }
+    }
+    @Async
+    @Timed(millis = 5000)
+    @GetMapping("/resource")
+    public ResponseEntity<String> getResource() throws TimeoutException {
+        // call third party service
+        return ResponseEntity.ok("OK");
     }
     @GetMapping("/all")
     public List<User> all(){

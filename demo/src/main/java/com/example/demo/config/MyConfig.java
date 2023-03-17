@@ -1,31 +1,17 @@
-package com.example.demo.config;
-
-import com.zaxxer.hikari.HikariDataSource;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
-import org.springframework.web.servlet.HandlerInterceptor;
-
-@Component
-public class ConnectionInterceptor implements HandlerInterceptor {
-
-    @Autowired
-    private HikariDataSource dataSource;
-
-    @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        int activeConnections = dataSource.getHikariPoolMXBean().getActiveConnections();
-        if (activeConnections > 3) {
-            // 拒绝连接并发出警告
-            response.sendError(HttpStatus.TOO_MANY_REQUESTS.value(), "Too many connections");
-            return false;
-        }
-        return true;
-    }
-}
-
+//package com.example.demo.config;
+//
+//import com.zaxxer.hikari.HikariDataSource;
+//import jakarta.servlet.http.HttpServletRequest;
+//import jakarta.servlet.http.HttpServletResponse;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//import org.springframework.http.HttpStatus;
+//import org.springframework.stereotype.Component;
+//import org.springframework.web.servlet.HandlerInterceptor;
+//import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+//import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+//
 //import java.util.concurrent.atomic.AtomicInteger;
 //
 //@Configuration
@@ -37,7 +23,7 @@ public class ConnectionInterceptor implements HandlerInterceptor {
 //        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/springboot");
 //        dataSource.setUsername("root");
 //        dataSource.setPassword("123456");
-//        dataSource.setMaximumPoolSize(5); // 设置最大连接数为5
+//        dataSource.setMaximumPoolSize(1); // 设置最大连接数为5
 //        return dataSource;
 //    }
 //
@@ -46,7 +32,7 @@ public class ConnectionInterceptor implements HandlerInterceptor {
 //        return new WebMvcConfigurer() {
 //            @Override
 //            public void addInterceptors(InterceptorRegistry registry) {
-//                registry.addInterceptor(new MyInterceptor()).addPathPatterns("/user/**");
+//                registry.addInterceptor(new MyInterceptor()).addPathPatterns("/user/login");
 //            }
 //        };
 //    }
@@ -71,4 +57,3 @@ public class ConnectionInterceptor implements HandlerInterceptor {
 //        }
 //    }
 //}
-//
