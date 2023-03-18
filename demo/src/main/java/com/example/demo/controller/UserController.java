@@ -46,7 +46,18 @@ public class UserController {
             Map<String, Object> responseMap = new HashMap<>();
             responseMap.put("message", "login success");
             responseMap.put("userId", loginUser.getId());
+            loginUser.setIsAuthenticated(true);
             return new ResponseEntity<>(responseMap, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("login fail", HttpStatus.UNAUTHORIZED);
+        }
+    }
+    @GetMapping("/logout/{userId}")
+    public ResponseEntity<?> login(@PathVariable int userId) {
+        User loginUser = userRepository.findById(userId).get();
+        if (loginUser != null) {
+            loginUser.setIsAuthenticated(false);
+            return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>("login fail", HttpStatus.UNAUTHORIZED);
         }
