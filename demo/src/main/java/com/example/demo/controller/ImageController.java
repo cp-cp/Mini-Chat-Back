@@ -64,9 +64,10 @@ import java.io.IOException;
 //    }
 //}
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class ImageController {
-
+        private static final String PYTHON_SCRIPT_PATH = "\"F:\\pythonProject\\chatbot\\hi.py\""; // replace with actual path
         @GetMapping("/image")
         public ResponseEntity<byte[]> getImage() throws IOException {
                 File file = new File("F:\\pythonProject\\chatbot\\wordcloud.png");
@@ -80,5 +81,32 @@ public class ImageController {
                 headers.setContentType(MediaType.IMAGE_PNG);
 
                 return new ResponseEntity<>(bytes, headers, HttpStatus.OK);
+        }
+        @PostMapping("/image/create")
+        public ResponseEntity generateImage(@RequestBody String text) {
+                try {
+                       // System.out.println(text);
+                        String singleLineText = text.replace("\n", " ");
+                        // call Python script with text as argument
+                        Process process = Runtime.getRuntime().exec("python " + PYTHON_SCRIPT_PATH + " " + singleLineText);
+                        int exitCode = process.waitFor();
+
+                        if (exitCode == 0) {
+//                                // read image file and return as byte array
+//                                File imageFile = new File("output.png"); // replace with actual output file path
+//                                byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
+//
+//                                // set response headers
+//                                HttpHeaders headers = new HttpHeaders();
+//                                headers.setContentType(MediaType.IMAGE_PNG);
+//                                headers.setContentLength(imageBytes.length);
+
+                                return new ResponseEntity<>(HttpStatus.OK);
+                        } else {
+                                return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                        }
+                } catch (IOException | InterruptedException e) {
+                        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
         }
 }

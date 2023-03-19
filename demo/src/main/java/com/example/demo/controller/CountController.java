@@ -30,15 +30,6 @@ public class CountController {
         Counter counter = meterRegistry.counter("tomcat.global.current.connections");
         return "Current connections: " + counter.count();
     }
-//    @Autowired
-//    private WebServerFactory webServer;
-//
-//    @GetMapping("/connections")
-//    public String getCurrentConnectionss() {
-//        TomcatWebServer tomcatWebServer = (TomcatWebServer) webServer;
-//        long currentConnections = tomcatWebServer.getTomcat().getConnector().getProtocolHandler().awaitConnectionsClose();
-//        return "Current connections: " + currentConnections;
-//    }
 
 
 }
