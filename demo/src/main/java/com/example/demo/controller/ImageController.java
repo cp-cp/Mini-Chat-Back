@@ -92,15 +92,6 @@ public class ImageController {
                         int exitCode = process.waitFor();
 
                         if (exitCode == 0) {
-//                                // read image file and return as byte array
-//                                File imageFile = new File("output.png"); // replace with actual output file path
-//                                byte[] imageBytes = Files.readAllBytes(imageFile.toPath());
-//
-//                                // set response headers
-//                                HttpHeaders headers = new HttpHeaders();
-//                                headers.setContentType(MediaType.IMAGE_PNG);
-//                                headers.setContentLength(imageBytes.length);
-
                                 return new ResponseEntity<>(HttpStatus.OK);
                         } else {
                                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
